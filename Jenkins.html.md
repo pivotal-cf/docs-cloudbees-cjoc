@@ -1,0 +1,135 @@
+---
+title: CloudBees Jenkins Operations Center for Pivotal Cloud Foundry
+---
+
+This is the documentation for the CloudBees Jenkins Operations Center for Pivotal Cloud Foundry.
+
+### Features
+
+Key features of the product are:
+
+* Integration with Cloud Foundry UAA for Single Sign On (SSO) support
+* Automatic Jenkins Operations Center master and shared-slave configuration
+
+### Install via Pivotal Ops Manager
+
+To install CloudBees Jenkins Operations Center for Pivotal Cloud Foundry, follow the procedure for installing Pivotal Ops Manager tiles:
+
+1. Download the product file from [Pivotal Network](https://network.pivotal.io/).
+1. Upload the product file to your Ops Manager installation.
+1. Click **Add** next to the uploaded product description in the Ops Manager `Available Products` view to add this product to your staging area.
+1. Click the newly added tile to review any configurable options.
+1. Click **Apply Changes** to install the service.
+
+### Dependencies
+This product requires Pivotal Cloud Foundry:
+
+* Elastic Runtime version 1.4 or greater
+* Ops Manager version 1.4 or greater
+
+### Managing Jenkins
+
+#### Licensing
+
+A trial license will be created when the product is installed, which is valid for **30 days**. This needs to be replaced with your enterprise license, which should be acquired directly from CloudBees. You can update the enterprise license in the Jenkins `Manage Jenkins` section when logged in as the UAA Admin user.
+
+The operator's machine that is accessing the Jenkins setup page, requires an internet connection to facilitate obtaining the trial license.
+
+If you are accessing Jenkins from a machine **with** internet access, a trial license will be automatically retrieved on the `Register Jenkins` page.
+
+If you are accessing Jenkins from a machine **without** internet access, you will need provide a valid license. Trial licenses can be obtained from [CloudBees](http://www.cloudbees.com/try-jenkins-enterprise).
+
+Upon a trial license expiring after **30 days**, you will be presented with the `Register Jenkins` page where you can enter your updated license details if you have not already done so ahead of the expiration.
+
+#### Installation Details
+
+By default the setup is configured as one Jenkins Operations Center, with one Shared-Slave instance configured.
+You can configure other shared-slaves in the Jenkins main configuration dashboard, clicking on "new Item" or simply increasing the value in the the `Resources` tab in Ops Manager (recommended).
+
+Once installed, Jenkins Operations Center is accessible via `http://jenkins-oc-0.your-cf-installation.com`.
+
+If you install several instances, these will be accessible via `http://jenkins-oc-[index].your-cf-installation.com`, where `index` is a numerical value which has as many sequentials values as the number of instances generated.
+
+i.e. if you install 3 jenkins operations center masters, then the 3 instances can be accessed via:
+
+ 1. `http://jenkins-oc-0.your-cf-installation.com`
+ 1. `http://jenkins-oc-1.your-cf-installation.com`
+ 1. `http://jenkins-oc-2.your-cf-installation.com`
+
+
+#### Authorization
+
+Cloud Foundry users registered with UAA can log into Jenkins Operations Center and browse across the multiple client masters. However only administrator will be able to configure the Jenkins Operations Center instance as well as client masters.
+
+The credentials for admin users can be obtained from the Elastic Runtime tile in Ops Manager. User access is managed through the UAA.
+
+### Environment Architecture
+
+#### Jenkins Operations Center Master
+By default we configure one single instance of Jenkins Operations Center. However, you can increase this value in the `Resources` tab in Ops Manager.
+
+### Masters
+
+Client Masters, meant to be managed by CJOC, need to be manually attached.
+To create a client master you can click on "New Item" and select "Client Master".
+
+  ![Client Master Configuration]
+  (/images/client-master.png)
+
+
+Once the client master is created on CJOC, you need to push the configuration to your standalone Jenkins Enterprise instance that you want to attach. You can do that by clicking on "Manage" in the client master dashboard.
+
+
+  ![Client Master Configuration]
+  (/images/client-master-1.png)
+
+More information on how to configure a client master in CloudBees Jenkins Operations Center can be found on CloudBees official documentation.
+
+Note that you will have to manually configure SSO on the client masters by going to the Jenkins Operations Center's security configuration page. Enforcing SSO, will allow you to browse across all the client masters directly from CJOC, without the need of authenticating again.
+
+  ![Client Master Configuration]
+  (/images/client-master-sso.png)
+
+
+#### Shared Slaves
+By default we configure one Jenkins Shared Slave. You can increase this value in the `Resources` tab in Ops Manager.
+
+A shared-slave is a slave that can be leased by all the client masters attached to CJOC, as they need it (for more information about shared-slaves you can refer to the standard Jenkins Operations Center documentation on CloudBees website)
+
+The more shared-slaves you add, the more client masters you are able to serve at the same time.
+
+You can add/disable/remove shared slaves, but built-in shared slaves  will be automatically re-created when Jenkins restarts. 
+
+####Managing the Topology from GUI
+
+From the Ops Manager GUI you can easily modify the number of shared slaves and Jenkins Operations Center masters to be installed
+
+![Resource Configuration]
+  (/images/managing-topology-oc.png)
+
+With this configuration, the 2 Jenkins Operations Center instances will be available at:
+
+ 1. `http://jenkins-oc-0.your-cf-installation.com` 
+ 1. `http://jenkins-oc-1.your-cf-installation.com`
+
+Each of them, will have 1 online and pre-configured shared slave attached.
+
+
+### Known Limitations
+
+Limitations with the current CloudBees Jenkins Operations Center for Pivotal Cloud Foundry product include:
+
+* The operator's machine which is logged into Ops Manager installing the tile requires an internet connection to obtain the trial license
+
+### Feedback
+
+Please provide any bugs, feature requests, or questions to [the Pivotal Cloud Foundry Feedback list](mailto:pivotal-cf-feedback@pivotal.io).
+
+### Version
+
+This product is based on CloudBees Jenkins Operations Center version 14.11 / 1.580.13.1.
+
+### Further Reading
+
+* [Official CloudBees Jenkins Operations Center Documentation](hhttp://documentation.cloudbees.com/docs/cjoc-user-guide/index.html)
+* [Jenkins Open Source](http://jenkins-ci.org/)
