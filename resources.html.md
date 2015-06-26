@@ -76,4 +76,4 @@ The following table shows the default resource and IP requirements for installin
 
 #### Notes:
 * You can scale out the number of `Jenkins Shared Slaves` in order to run more build jobs.
-* Increasing the instance count for `Jenkins Operations Center` does not give you High Availability.
+* Increasing the instance count for `Jenkins Operations Center` does not give you high availability.

@@ -1,13 +1,13 @@
 ---
-title: Security: CloudBees Jenkins Operations Center integration with Pivotal Cloud Foundry
+title: Security-CloudBees Jenkins Operations Center Integration with Pivotal Cloud Foundry
 ---
 
 ### Introduction
-This is a guide on how to use CloudBees Jenkins Operations Center security model integrates with Pivotal Cloud Foundry on your Cloud Foundry installation.
+This is a guide on how to use CloudBees Jenkins Operations Center security model integrations with your [Pivotal Cloud Foundry](https://network.pivotal.io/products/pivotal-cf) installation.
 
 This guide will cover:
 
-1. Authentication: Pivotal Cloud Foundry / UAA as the Identity Provider (IDP) f the SSO Authentication for Jenkins
+1. Authentication: Pivotal Cloud Foundry / UAA as the Identity Provider (IDP) of the SSO Authentication for Jenkins
 2. Authorization: Cloud Foundry Authorization model based on organizations and spaces in Jenkins
 3. Administrator permissions on Jenkins
 4. Resetting the permissions
@@ -18,70 +18,62 @@ The UAA is the identity management service for Cloud Foundry and acts a SSO serv
 
 ### Authorization: Cloud Foundry Authorization model based on organizations and spaces in Jenkins
 
-The Jenkins instance will come pre-configured with some Authorization settings that limit the read-write permission of the user to the CF organizations he belongs to. 
-For each logged-in user a folder will be automatically created (if does not exist yet) for each organization the user belongs to and an additional folder specific to the user: the latter will be only visible by the specific user, wherease the organization-folders will be shared across all the members of the same organizations.
+The Jenkins instance will come pre-configured with some Authorization settings that limit the read-write permission of the user to the CF organizations he belongs to.
+For each logged-in user, a folder will be automatically created (if does not exist yet) for each organization the user belongs to, as well as an additional folder specific to the user. The latter will be only visible by the specific user, whereas the organization-folders will be shared across all the members of the same organizations.
 
-For example, an user belonging to the CF organization "cloudbees"
+For example, an user belonging to the PCF organization "cloudbees":
 
-  ![Authorization]
-  <%= image_tag("../images/authorisation-1.2.png") %>
-
-
-will belong to the matching external group "cloudbees" in Jenkins
-
-  ![Authorization]
-  <%= image_tag("../images/authorisation-1.1.png") %>
-
-and will have access to the "cloudbees" folder and to the folder specific for his user.
+  ![Authorization](../images/authorisation-1.2.png)
 
 
-  ![Authorization]
-  <%= image_tag("../images/authorisation-1.png") %>
+will belong to the matching external group "cloudbees" in Jenkins:
+
+  ![Authorization](../images/authorisation-1.1.png)
+
+and will have access to the `cloudbees` folder and to the folder specific for his user.
 
 
-Someone else belonging to the CF organization "pivotal" 
-
-  ![Authorization]
-  <%= image_tag("../images/authorisation-2.2.png") %>
-
-will belong to the matching external group "pivotal" in Jenkins
-
-  ![Authorization]
-  <%= image_tag("../images/authorisation-2.1.png") %>
-
-and will have access to the "pivotal" folder, plus to the folder specific for his user. 
+  ![Authorization](../images/authorisation-1.png)
 
 
-  ![Authorization]
-  <%= image_tag("../images/authorisation-2.png") %>
+Someone else belonging to the PCF organization "pivotal":
 
-Note that he won't have any visibility on the "cloudbees" folder or access to other users' specific folders:  the two users belong to different organizations and the work environments will be completely isolated.
+  ![Authorization](../images/authorisation-2.2.png)
 
-Differently, a CF administrator (whoever is member of the UAA group `cloud_controller.admin`) will have access to all the CF organizations.
+will belong to the matching external group "pivotal" in Jenkins:
 
-  ![Authorization]
-  <%= image_tag("../images/authorisation-3.2.png") %>
+  ![Authorization](../images/authorisation-2.1.png)
 
-As conseguence, the admin user in Jenkins will be member of all the external groups matching these organizations
+and will have access to the `pivotal` folder, plus to the folder specific for his user.
 
-  ![Authorization]
-  <%= image_tag("../images/authorisation-3.1.png") %>
 
-and will be allowed to access all the existing Jenkins folders
+  ![Authorization](../images/authorisation-2.png)
 
-  ![Authorization]
-  <%= image_tag("../images/authorisation-3.png") %>
+Note that he won't have any visibility on the "cloudbees" folder or access to other users' specific folders: the two users belong to different organizations and the work environments will be completely isolated.
+
+However, a PCF administrator (members of the UAA group `cloud_controller.admin`) will have access to all the PCF organizations.
+
+  ![Authorization](../images/authorisation-3.2.png)
+
+As consequence, the admin user in Jenkins will be a member of all the external groups matching these organizations:
+
+  ![Authorization](../images/authorisation-3.1.png)
+
+and will be allowed to access all the existing Jenkins folders:
+
+  ![Authorization](../images/authorisation-3.png)
+
 ### Administrator permissions on Jenkins
 
-Members of the UAA group cloud_controller.admin` are granted the admin privileges in Jenkins and will be part of the `Administrator` group
+Members of the UAA group `cloud_controller.admin` are granted the admin privileges in Jenkins and will be part of the `Administrator` group.
 
 #### Troubleshooting: resetting the permissions
 
-Disable security as recommended in https://wiki.jenkins-ci.org/display/JENKINS/Disable+security
+Disable security as recommended in https://wiki.jenkins-ci.org/display/JENKINS/Disable+security.
 
-For this, you need to access to the jenkins master file system `/var/vcap/store/jenkins_master`.
+For this, you need to access to the Jenkins master file system at `/var/vcap/store/jenkins_master`.
 
-On restart, CloudBees Jenkins Operations Center for Pivotal Cloud Foundry, it automatically configures Pivotal Cloud Foundry Single Sign On.
+On restart, CloudBees Jenkins Operations Center for Pivotal Cloud Foundry automatically configures Pivotal Cloud Foundry Single Sign On.
 To disable this automatic configuration, create the following empty files:
 
 * `/var/vcap/store/jenkins_master/.disable-authentication-script`
