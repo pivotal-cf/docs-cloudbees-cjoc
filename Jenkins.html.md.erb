@@ -2,16 +2,21 @@
 title: CloudBees Jenkins Operations Center for Pivotal Cloud Foundry
 ---
 
-This is the documentation for the CloudBees Jenkins Operations Center for Pivotal Cloud Foundry.
+CloudBees Jenkins Operations Center for Pivotal Cloud Foundry can be deployed to and manage by your Pivotal Cloud Foundry environment to orchestrate your [CloudBees Jenkins Enterprise](http://docs.pivotal.io/cloudbees/Jenkins.html) masters.
 
 ### Features
 
 Key features of the product are:
 
-* Integration with Cloud Foundry UAA for Single Sign On (SSO) support
+* [Integration with Cloud Foundry UAA for Single Sign On (SSO) support](http://docs.pivotal.io/cloudbees/security.html)
 * Automatic Jenkins Operations Center master and shared-slave configuration
 
+
 ### Install via Pivotal Ops Manager
+
+    *NOTE: If using HTTPS, the "Jenkins URL" declared for CloudBees Jenkins Operations Center must be a trusted SSL certificate. Self signed certificates won’t work.*
+
+    ![Jenkins URL require a treusted SSL Certificate](../images/known-issue-require-trusted-ssl-certificate.png)
 
 To install CloudBees Jenkins Operations Center for Pivotal Cloud Foundry, follow the procedure for installing Pivotal Ops Manager tiles:
 
