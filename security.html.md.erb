@@ -1,18 +1,18 @@
 ---
-title: Security-CloudBees Jenkins Operations Center Integration with Pivotal Cloud Foundry
+title: Security-CloudBees Jenkins Operations Center Integration with Pivotal Cloud Foundry&reg;
 ---
 
 ### Introduction
-This is a guide on how to use CloudBees Jenkins Operations Center security model integrations with your [Pivotal Cloud Foundry](https://network.pivotal.io/products/pivotal-cf) installation.
+This is a guide on how to use CloudBees Jenkins Operations Center security model integrations with your [Pivotal Cloud Foundry&reg;](https://network.pivotal.io/products/pivotal-cf) (PCF) installation.
 
 This guide will cover:
 
-1. Authentication: Pivotal Cloud Foundry / UAA as the Identity Provider (IDP) of the SSO Authentication for Jenkins
+1. Authentication: Pivotal Cloud Foundry&reg; / UAA as the Identity Provider (IDP) of the SSO Authentication for Jenkins
 2. Authorization: Cloud Foundry Authorization model based on organizations and spaces in Jenkins
 3. Administrator permissions on Jenkins
 4. Resetting the permissions
 
-### Authentication: Pivotal Cloud Foundry / UAA as the Identity Provider (IDP) of the SSO Authentication for Jenkins
+### Authentication: Pivotal Cloud Foundry&reg; / UAA as the Identity Provider (IDP) of the SSO Authentication for Jenkins
 
 The UAA is the identity management service for Cloud Foundry and acts a SSO service for Jenkins. This means that all the users can authenticate to Jenkins using the same credentials used to access the CF platform.
 
@@ -73,7 +73,7 @@ Disable security as recommended in https://wiki.jenkins-ci.org/display/JENKINS/D
 
 For this, you need to access to the Jenkins master file system at `/var/vcap/store/jenkins_master`.
 
-On restart, CloudBees Jenkins Operations Center for Pivotal Cloud Foundry automatically configures Pivotal Cloud Foundry Single Sign On.
+On restart, CloudBees Jenkins Operations Center for Pivotal Cloud Foundry&reg; automatically configures Pivotal Cloud Foundry&reg; Single Sign On.
 To disable this automatic configuration, create the following empty files:
 
 * `/var/vcap/store/jenkins_master/.disable-authentication-script`

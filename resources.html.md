@@ -1,5 +1,5 @@
 ---
-title: CloudBees Jenkins Operations Center for Pivotal Cloud Foundry
+title: CloudBees Jenkins Operations Center for Pivotal Cloud Foundry&reg;
 ---
 
 # Resource requirements
