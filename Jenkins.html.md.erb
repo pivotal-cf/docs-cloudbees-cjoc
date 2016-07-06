@@ -52,15 +52,15 @@ Upon a trial license expiring after **30 days**, you will be presented with the 
 By default the setup is configured as one Jenkins Operations Center, with one Shared-Slave instance configured.
 You can configure other shared-slaves in the Jenkins main configuration dashboard, clicking on "new Item" or simply increasing the value in the `Resources` tab in Ops Manager (recommended).
 
-Once installed, Jenkins Operations Center is accessible via `http://jenkins-oc-0.your-cf-installation.com`.
+Once installed, Jenkins Operations Center is accessible via `http://jenkins-oc-0.your-cf-installation.example.com`.
 
-If you install several instances, these will be accessible via `http://jenkins-oc-[index].your-cf-installation.com`, where `index` is a numerical value which has as many sequential values as the number of instances generated.
+If you install several instances, these will be accessible via `http://jenkins-oc-[index].your-cf-installation.example.com`, where `index` is a numerical value which has as many sequential values as the number of instances generated.
 
 For example, if you install three Jenkins Operations Center masters, then the three instances can be accessed via:
 
- 1. `http://jenkins-oc-0.your-cf-installation.com`
- 1. `http://jenkins-oc-1.your-cf-installation.com`
- 1. `http://jenkins-oc-2.your-cf-installation.com`
+ 1. `http://jenkins-oc-0.your-cf-installation.example.com`
+ 1. `http://jenkins-oc-1.your-cf-installation.example.com`
+ 1. `http://jenkins-oc-2.your-cf-installation.example.com`
 
 
 #### Authorization
@@ -115,8 +115,8 @@ From the Ops Manager GUI you can easily modify the number of shared slaves and J
 
 With this configuration, the two Jenkins Operations Center instances will be available at:
 
- 1. `http://jenkins-oc-0.your-cf-installation.com`
- 1. `http://jenkins-oc-1.your-cf-installation.com`
+ 1. `http://jenkins-oc-0.your-cf-installation.example.com`
+ 1. `http://jenkins-oc-1.your-cf-installation.example.com`
 
 Each of them will have one online and pre-configured shared slave attached.
 
@@ -133,7 +133,7 @@ Please provide any bugs, feature requests, or questions to [the Pivotal Cloud Fo
 
 ### Version
 
-This product is based on CloudBees Jenkins Operations Center version 14.11 / 1.580.13.1.
+This product is based on CloudBees Jenkins Operations Center version 14.11 / v1.580.13.1.
 
 ### Further Reading
 
