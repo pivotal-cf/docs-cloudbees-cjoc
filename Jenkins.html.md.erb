@@ -5,7 +5,7 @@ owner: London Services
 
 ## <a id="deprecation"></a> Deprecation Notice
 
-As of release 15.11.02.01, CloudBees Jenkins Operations Center is now provided
+As of release v15.11.02.01, CloudBees Jenkins Operations Center is now provided
 as part of the [CloudBees Jenkins Platform](https://network.pivotal.io/products/cloudbees) tile. Installation of the CloudBees Jenkins Operations Center tile is no longer necessary. 
 
 ## <a id="migrate"></a>  Migrate to the CloudBees Jenkins Platform Tile
@@ -51,5 +51,5 @@ If you do not remove the CJOC tile, it will try to register the same URL as the 
 1. Run `mv jenkins-oc jenkins-oc.backup`.
 1. Run `unzip -X /tmp/jenkins-oc.zip -d .`
 1. Start the CJOC service: `monit start jenkins-oc`.
-1. Check that your CJOC data is at http://jenkins-oc-0.yourcfdomain.com.
+1. Check that your CJOC data is at http://jenkins-oc-0.YOUR-CF-DOMAIN.example.com.
 1. Once you verify that your data appears, you can remove `/var/vcap/store/jenkins-oc.backup` and `/tmp/jenkins-oc.zip`.
