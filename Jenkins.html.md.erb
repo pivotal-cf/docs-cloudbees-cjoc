@@ -1,12 +1,12 @@
 ---
-title: CloudBees Jenkins Operations Center for Pivotal Cloud Foundry&reg;
+title: CloudBees Jenkins Operations Center for Pivotal Cloud Foundry
 owner: London Services
 ---
 
 ## <a id="deprecation"></a> Deprecation Notice
 
 As of release v15.11.02.01, CloudBees Jenkins Operations Center is now provided
-as part of the [CloudBees Jenkins Platform](https://network.pivotal.io/products/cloudbees) tile. Installation of the CloudBees Jenkins Operations Center tile is no longer necessary. 
+as part of the [CloudBees Jenkins Platform](https://network.pivotal.io/products/cloudbees) tile. Installation of the CloudBees Jenkins Operations Center tile is no longer necessary.
 
 ## <a id="migrate"></a>  Migrate to the CloudBees Jenkins Platform Tile
 
@@ -15,17 +15,17 @@ To migrate your existing CloudBees Jenkins Operations Center tile content over t
 ### <a id="export"></a> Step 1: Export current CJOC configuration
 
 1. Log in to a host with access to the Bosh Director.
-1. Ensure the current bosh deployment targets the CJOC tile. If it does not, look for the most recent manifest under `/var/tempest/workspaces/default/deployments` and run the following command: 
+1. Ensure the current bosh deployment targets the CJOC tile. If it does not, look for the most recent manifest under `/var/tempest/workspaces/default/deployments` and run the following command:
 
 	<pre class="terminal">$ bosh deployment /var/tempest/workspaces/default/deployments/p-jenkins-oc-xxxx.xml</pre>
 
 1. Use `bosh ssh` to connect to the VM running `jenkins-oc` (should be `jenkins-oc-xxx/0`). The following steps refer to this as `JOB_INDEX`.
-1. Switch to root user: 
+1. Switch to root user:
 	<pre class="terminal">$ sudo su</pre>
 1. Change directories: `cd /var/vcap/store`
 1. Run `zip -y -r -0 /tmp/jenkins-oc.zip jenkins-oc/`.
 1. Run the `exit` command.
-1. Use `bosh scp` to create a file in the current directory: 
+1. Use `bosh scp` to create a file in the current directory:
 	<pre class="terminal">$ bosh scp $JOB_INDEX --download /tmp/jenkins-oc.zip .</pre>
 
 ### <a id="install"></a> Step 2: Remove the CJOC tile and Install the CJP Tile
@@ -38,7 +38,7 @@ If you do not remove the CJOC tile, it will try to register the same URL as the 
 ### <a id="import"></a> Step 3: Import Configuration in the CloudBees Jenkins Platform Tile
 
 1. Log in to a host with access to the Bosh Director.
-1. Ensure the current bosh deployment targets the CJOC tile. If it does not, look for the most recent manifest under `/var/tempest/workspaces/default/deployments` and run the following command: 
+1. Ensure the current bosh deployment targets the CJOC tile. If it does not, look for the most recent manifest under `/var/tempest/workspaces/default/deployments` and run the following command:
 
 	<pre class="terminal">$ bosh deployment /var/tempest/workspaces/default/deployments/p-jenkins-oc-xxxx.xml</pre>
 
