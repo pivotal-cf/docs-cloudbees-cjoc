@@ -1,5 +1,5 @@
 ---
-title: CloudBees Jenkins Operations Center for Pivotal Cloud Foundry&reg;
+title: CloudBees Jenkins Operations Center for Pivotal Cloud Foundry
 owner: London Services
 ---
 
